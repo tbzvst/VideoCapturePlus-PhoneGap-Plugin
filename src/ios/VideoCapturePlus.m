@@ -213,7 +213,7 @@
                 self.overlayBox.numberOfLines = 10;
                 self.overlayBox.alpha = 0.90;
                 
-                self.overlayBox.textAlignment = UITextAlignmentCenter;
+                self.overlayBox.textAlignment = NSTextAlignmentCenter;
                 
                 self.overlayBox.text = overlayText;
                 
@@ -243,7 +243,7 @@
             [self.viewController presentViewController:pickerController animated:YES completion:nil];
         } else {
             // deprecated as of iOS >= 6.0
-            [self.viewController presentModalViewController:pickerController animated:YES];
+            [self.viewController presentViewController:pickerController animated:YES completion:nil];
         }
     }
 }
@@ -398,9 +398,9 @@
     NSString* callbackId = cameraPicker.callbackId;
     
     if ([picker respondsToSelector:@selector(presentingViewController)]) {
-        [[picker presentingViewController] dismissModalViewControllerAnimated:YES];
+        [[picker presentingViewController] dismissViewControllerAnimated:YES completion:nil];
     } else {
-        [[picker parentViewController] dismissModalViewControllerAnimated:YES];
+        [[picker parentViewController] dismissViewControllerAnimated:YES  completion:nil];
     }
     
     CDVPluginResult* result = nil;
@@ -420,9 +420,9 @@
     NSString* callbackId = cameraPicker.callbackId;
     
     if ([picker respondsToSelector:@selector(presentingViewController)]) {
-        [[picker presentingViewController] dismissModalViewControllerAnimated:YES];
+        [[picker presentingViewController] dismissViewControllerAnimated:YES completion:nil];
     } else {
-        [[picker parentViewController] dismissModalViewControllerAnimated:YES];
+        [[picker parentViewController] dismissViewControllerAnimated:YES completion:nil];
     }
     
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageToErrorObject:CAPTURE_NO_MEDIA_FILES];
